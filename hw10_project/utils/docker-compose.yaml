@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+
+  api_db:
+    container_name: hw10
+    image: mongo:4.4.19-rc0-focal
+    volumes:
+      - db-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_ADMIN}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - 27017:27017
+
+volumes:
+  db-data:

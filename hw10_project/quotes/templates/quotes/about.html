@@ -1,0 +1,13 @@
+{% extends "quotes/base.html" %}
+
+{% block content %}
+
+<h3>{{author.fullname}}</h3>
+<div>Born: {{author.born_date}}, {{author.born_location}}</div>
+<p>
+<div class='author-description'>Description: {{author.description}}</div>
+</p>
+<p>Time of creation: <kbd>{{author.created_ad}}</kbd></p>
+
+
+{% endblock %}
