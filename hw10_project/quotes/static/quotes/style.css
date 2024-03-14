@@ -94,14 +94,16 @@ a {
     text-decoration: none;
 }
 
-.alert {
+.alert-error {
     color: crimson;
-    width: 80%;
+    width: 70%;
     float: right;
 }
 
 .alert-success {
     color: green;
+    width: 70%;
+    float: right;
 }
 
 .form-label {

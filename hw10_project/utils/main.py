@@ -62,5 +62,5 @@ def main():
 
 
 if __name__ == '__main__':
-    # main_seed()
+    main_seed()
     main()

@@ -20,5 +20,5 @@ def get_top10_tags():
             tags_counts[tag] += 1
         else:
             tags_counts[tag] = 1
-    top10_tags = [y[0] for y in sorted(tags_counts.items(), key=lambda x: x[1], reverse=True)[:10]]
+    top10_tags = [tag[0] for tag in sorted(tags_counts.items(), key=lambda x: x[1], reverse=True)[:10]]
     return top10_tags

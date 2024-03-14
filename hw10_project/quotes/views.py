@@ -2,14 +2,13 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from bson import ObjectId
+from mongoengine.errors import NotUniqueError
 
 from django.contrib import messages
 from .forms import AuthorForm, QuoteForm
 from .utils import get_mongodb, get_top10_tags
 
 top10_tags = get_top10_tags()
-
-
 
 
 @login_required
@@ -48,9 +47,7 @@ def add_author(request):
                 return redirect('quotes:add_author')
             collection.insert_one(form.cleaned_data)
             messages.success(request, f'Author {form.cleaned_data["fullname"]} added successfully')
-            redirect('quotes:add_author')
-
-            return redirect('quotes:root')
+            return redirect('quotes:add_author')
 
         else:
             return render(request, 'quotes/add_author.html', context={"form": form})
@@ -62,8 +59,8 @@ def show_tag(request, tag, page=1):
     db = get_mongodb()
     quotes = db.quotes.find()
     quotes_show = [quote for quote in quotes if tag in quote['tags']]
-    # top10_tags = get_top10_tags()
-    return render(request, 'quotes/tag.html', context={"quotes": quotes_show, "tag": tag, "top10_tags": top10_tags, "page": page})
+    return render(request, 'quotes/tag.html',
+                  context={"quotes": quotes_show, "tag": tag, "top10_tags": top10_tags, "page": page})
 
 
 def about_author(request, author_id):
@@ -76,7 +73,6 @@ def about_author(request, author_id):
 def main(request, page=1):
     db = get_mongodb()
     quotes = db.quotes.find()
-    # top10_tags = get_top10_tags()
     per_page = 10
     paginator = Paginator(list(quotes), per_page)
     quotes_on_page = paginator.get_page(page)
