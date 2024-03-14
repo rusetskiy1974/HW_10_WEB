@@ -41,7 +41,7 @@ def add_author(request):
         if form.is_valid():
             authors = collection.find()
             if form.cleaned_data['fullname'] in [author['fullname'] for author in authors]:
-                messages.error(request, f'Author {form.cleaned_data["fullname"]} already exists')
+                messages.error(request, f'Author {form.cleaned_data["fullname"]} already exists!')
                 return redirect('quotes:add_author')
             collection.insert_one(form.cleaned_data)
             # messages.success(request, f'Author {form.cleaned_data["fullname"]} added successfully')

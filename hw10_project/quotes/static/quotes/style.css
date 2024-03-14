@@ -29,6 +29,7 @@
     font-size: small;
     background-color: #7CA3E6;
 }
+
 .pager {
     padding-left: 0;
     margin: 22px 0;
@@ -57,6 +58,10 @@ ul.pager {
 .pager a {
     color: #333333;
 }
+a {
+    color: #4582ec;
+    text-decoration: none;
+}
 
 .pager li>a, .pager li>span {
     display: inline-block;
@@ -70,10 +75,11 @@ ul.pager {
     float: left;
 }
 
-.disabled {
-    color: #333333;
-    cursor: not-allowed;
+.pager .disabled {
+   
+    display: none;
 }
+
 .author-description {
     text-align: justify;
     margin-bottom: 20px;
@@ -90,6 +96,8 @@ a {
 
 .alert {
     color: crimson;
+    width: 80%;
+    float: right;
 }
 
 .alert-success {
@@ -98,8 +106,34 @@ a {
 
 .form-label {
     display: inline-block;
-    width: 100px;
+    width: 200px;
 }
 .form-input {
     width: 200px;
 }
+.author-details {
+    width: 80%;
+}
+
+.header-box {
+    padding-bottom: 40px;
+}
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.clearfix:before, .clearfix:after, .dl-horizontal dd:before, .dl-horizontal dd:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .btn-toolbar:before, .btn-toolbar:after, .btn-group-vertical>.btn-group:before, .btn-group-vertical>.btn-group:after, .nav:before, .nav:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .pager:before, .pager:after, .panel-body:before, .panel-body:after, .modal-footer:before, .modal-footer:after {
+    content: " ";
+    display: table;
+}
+.pager disabled {
+    display: none;
+}
+
+

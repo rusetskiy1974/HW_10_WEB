@@ -20,14 +20,14 @@
 
     <form method="post">
         {% csrf_token %}
-        <div class="mb-3">
+        <div class="mb-4">
             <label class="form-label">Username
                 {{ form.username }}
             </label>
             <span>{{form.errors.username}}</span>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-4">
             <label class="form-label">Password
                 {{ form.password }}
             </label>
