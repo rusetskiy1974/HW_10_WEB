@@ -2,6 +2,7 @@
 {% load extract %}
 
 {% block content %}
+
 <h3>Viewing tag: <a style="color:blue;">{{tag}}</a></h3>
 <div class="row">
     <div class="col-md-8">
@@ -19,32 +20,27 @@
                 <a class="tag" href="{% url 'quotes:tag' tag %}"> {{tag}}</a>
                 {% endfor %}
 
+
             </div>
         </div>
         {% endfor %}
-<!--        <nav>-->
-<!--            <ul class="pager">-->
+    </div>
+        <div class="col-md-4 tags-box">
 
-<!--                <li class="previous">-->
-<!--                    <a class="{% if not quotes.has_previous %} disabled {% endif %}"-->
-<!--                       href="{% if   quotes.has_previous %}  {% url 'quotes:tag'   quotes.previous_page_number %} {% else %} # {% endif %}">-->
-<!--                        <span aria-hidden="true">←</span> Previous-->
-<!--                    </a>-->
-<!--                </li>-->
+            <h2>Top Ten tags</h2>
+            {% for tag in top10_tags %}
+
+            <span class="tag-item">
+            <a class="tag" style="font-size: 20px" href="{% url 'quotes:tag' tag %}">{{tag}}</a>
+            </span>
+            {% endfor %}
 
 
-<!--                <li class="next">-->
-<!--                    <a class="{% if not quotes.has_next %} disabled {% endif %}"-->
-<!--                       href="{% if   quotes.has_next %}  {% url 'quotes:tag'   quotes.next_page_number %} {% else %} # {% endif %}">-->
-<!--                        Next <span aria-hidden="true">→</span></a>-->
-<!--                </li>-->
-
-<!--            </ul>-->
-<!--        </nav>-->
+        </div>
 
     </div>
 
-</div>
+
 {% endblock %}
 
 

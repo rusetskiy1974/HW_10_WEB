@@ -76,7 +76,7 @@ a {
 }
 
 .pager .disabled {
-   
+
     display: none;
 }
 
@@ -134,6 +134,24 @@ a {
 }
 .pager disabled {
     display: none;
+}
+.tags-box {
+    text-align: right;
+}
+
+.tag {
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: white;
+    font-size: small;
+    background-color: #7CA3E6;
+}
+.tags-box h2 {
+    margin-top: 0px;
+}
+.tag-item {
+    display: block;
+    margin: 4px;
 }
 
 

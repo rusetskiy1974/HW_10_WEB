@@ -1,16 +1,18 @@
-from time import sleep
-
-from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from bson import ObjectId
 
 from django.contrib import messages
-from .models import Author, Quote, Tag
 from .forms import AuthorForm, QuoteForm
-from mongoengine import NotUniqueError
-from .utils import get_mongodb
+from .utils import get_mongodb, get_top10_tags
+
+top10_tags = get_top10_tags()
 
 
+
+
+@login_required
 def add_quote(request):
     db = get_mongodb()
     authors_ = db.authors.find()
@@ -32,6 +34,7 @@ def add_quote(request):
     return render(request, 'quotes/add_quote.html', context={"authors": authors_, "form": QuoteForm()})
 
 
+@login_required
 def add_author(request):
     db = get_mongodb()
     collection = db.authors
@@ -44,9 +47,9 @@ def add_author(request):
                 messages.error(request, f'Author {form.cleaned_data["fullname"]} already exists!')
                 return redirect('quotes:add_author')
             collection.insert_one(form.cleaned_data)
-            # messages.success(request, f'Author {form.cleaned_data["fullname"]} added successfully')
-            # redirect('quotes:add_author')
-            # sleep(2)
+            messages.success(request, f'Author {form.cleaned_data["fullname"]} added successfully')
+            redirect('quotes:add_author')
+
             return redirect('quotes:root')
 
         else:
@@ -56,14 +59,11 @@ def add_author(request):
 
 
 def show_tag(request, tag, page=1):
-    # tag = request.GET.get('tag')
     db = get_mongodb()
     quotes = db.quotes.find()
     quotes_show = [quote for quote in quotes if tag in quote['tags']]
-    # per_page = 10
-    # paginator = Paginator(list(quotes_show), per_page)
-    # quotes_on_page = paginator.get_page(page)
-    return render(request, 'quotes/tag.html', context={"quotes": quotes_show, "tag": tag})
+    # top10_tags = get_top10_tags()
+    return render(request, 'quotes/tag.html', context={"quotes": quotes_show, "tag": tag, "top10_tags": top10_tags, "page": page})
 
 
 def about_author(request, author_id):
@@ -76,7 +76,8 @@ def about_author(request, author_id):
 def main(request, page=1):
     db = get_mongodb()
     quotes = db.quotes.find()
+    # top10_tags = get_top10_tags()
     per_page = 10
     paginator = Paginator(list(quotes), per_page)
     quotes_on_page = paginator.get_page(page)
-    return render(request, 'quotes/index.html', context={"quotes": quotes_on_page})
+    return render(request, 'quotes/index.html', context={"quotes": quotes_on_page, "top10_tags": top10_tags})

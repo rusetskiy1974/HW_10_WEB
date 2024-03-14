@@ -4,7 +4,7 @@
 
 <form method="POST" action="{% url 'quotes:add_quote' %}">
     {% csrf_token %}
-
+ <h3>Add new quote: </h3>
     <div style="padding: 10px">
         <label class="form-label"> Quote description:
             {{ form.quote }}
@@ -28,8 +28,8 @@
     </div>
 
     <div class="grid">
-        <button type="submit">Submit</button>
-        <button type="reset" class="secondary">Reset</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
     </div>
 </form>
 {% endblock %}
