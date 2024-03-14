@@ -9,7 +9,6 @@ class Author(models.Model):
     description = models.TextField()
 
 
-
 class Tag(models.Model):
     name = models.CharField(max_length=100, null=False, unique=True)
 
@@ -18,4 +17,3 @@ class Quote(models.Model):
     tags = models.ManyToManyField(Tag)
     quote = models.CharField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE, default=None, null=True)
-

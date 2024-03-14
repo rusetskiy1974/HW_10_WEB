@@ -87,3 +87,19 @@ a {
     color: #4582ec;
     text-decoration: none;
 }
+
+.alert {
+    color: crimson;
+}
+
+.alert-success {
+    color: green;
+}
+
+.form-label {
+    display: inline-block;
+    width: 100px;
+}
+.form-input {
+    width: 200px;
+}
