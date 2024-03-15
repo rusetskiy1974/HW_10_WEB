@@ -8,8 +8,11 @@ django.setup()
 
 from quotes.models import Author, Tag, Quote  # noqa
 
-client = MongoClient("mongodb://localhost:27017", password='example', username='root')
-db = client.hw_10_web
+from quotes.utils import get_mongodb # noqa
+
+db = get_mongodb()
+# client = MongoClient("mongodb://localhost:27017", password='example', username='root')
+# db = client.hw_10_web
 authors = db.authors.find()
 for author in authors:
     Author.objects.get_or_create(

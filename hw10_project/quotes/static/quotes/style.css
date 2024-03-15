@@ -96,13 +96,18 @@ a {
 
 .alert-error {
     color: crimson;
-    width: 70%;
+
     float: right;
+    --bs-alert-color: var(--bs-danger-text-emphasis);
+    --bs-alert-bg: var(--bs-danger-bg-subtle);
+    --bs-alert-border-color: var(--bs-danger-border-subtle);
+    --bs-alert-link-color: var(--bs-danger-text-emphasis);
 }
 
+}
 .alert-success {
     color: green;
-    width: 70%;
+    width: 50%;
     float: right;
 }
 
