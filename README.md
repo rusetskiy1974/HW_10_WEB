@@ -8,7 +8,7 @@ hw10_project/utils/seed.py --заповнюємо базу MongoDB з utils/data
 
 В терміналі ./hw10_project/python manage.py migrate -- застосувуємо початкову міграцію для PostgreSQL Django нашого проекту
 
-В терміналі ./hw10_project/python manage.py makemigrations  -- застосовуємо початкову міграцію
+В терміналі ./hw10_project/python manage.py makemigrations  -- створюємо міграцію
 
 В терміналі ./hw10_project/ python manage.py runserver --  запускаємо наш сервер
 
