@@ -7,3 +7,4 @@ docker-compose.yaml запускаємо docker-compose
 В браузері на localhost:9000 --Працюємо з нашим додатком
 
 Hаш додаток працює  з цитатами та авторами в MongoDB, а з користувачами у Postgres 
+
