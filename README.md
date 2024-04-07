@@ -8,3 +8,4 @@ docker-compose.yaml запускаємо docker-compose
 
 Hаш додаток працює  з цитатами та авторами в MongoDB, а з користувачами у Postgres 
 
+
