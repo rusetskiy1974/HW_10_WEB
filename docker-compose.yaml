@@ -1,0 +1,79 @@
+version: "3.9"
+
+
+services:
+  db_postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${DB_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${DB_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${DB_POSTGRES}
+    container_name: db_postgres
+    ports:
+      - "5432:5432"
+
+#    volumes:
+#      - pg_db_data:/var/lib/postgresql/data/
+
+
+
+  api_db_admin:
+    container_name: db_admin1
+    image: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${DB_ADMIN}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${DB_PASSWORD}
+      ME_CONFIG_MONGODB_URL: ${DB_URI}
+      ME_CONFIG_BASICAUTH_USERNAME: ${DB_ADMIN_UI_USER}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${DB_ADMIN_UI_PASSWORD}
+    ports:
+      - 8080:8081
+
+
+  api_db:
+    container_name: db_mongo1
+    image: mongo:4.4.19-rc0-focal
+#    volumes:
+#      - db-data:/data/db_mongo
+#      - ./src:/examples
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_ADMIN}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - 27017:27017
+
+
+
+  our_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DB_URI=mongodb://${DB_ADMIN}:${DB_PASSWORD}@api_db:27017
+
+    depends_on:
+      - db_postgres
+      - api_db
+    image: 'my_django_app'
+    ports:
+      - 9000:8000
+
+    command: >
+      sh -c "poetry run python utils/seed.py &&
+      poetry run python manage.py migrate --traceback &&
+      poetry run python manage.py runserver 0.0.0.0:8000"
+
+
+
+
+
+#volumes:
+#  db-data:
+#  pg_db_data:
+
+
+#networks:
+#  project_network:
+#    driver: bridge
+
+

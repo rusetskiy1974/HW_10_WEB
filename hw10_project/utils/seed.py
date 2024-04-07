@@ -1,12 +1,18 @@
 import json
+from pymongo import MongoClient
 
 from mongoengine.errors import NotUniqueError
 
 from models import Author, Quote
 
+client = MongoClient("mongodb://api_db:27017", username="root", password="example")
+db = client['hw_10_web']
+collection = db['authors']
+collection1 = db['quotes']
+
 
 def main():
-    with open('data/authors.json', encoding='utf-8') as fd:
+    with open('utils/data/authors.json', encoding='utf-8') as fd:
         data_author = json.load(fd)
         for el in data_author:
             try:
@@ -16,7 +22,7 @@ def main():
             except NotUniqueError:
                 print(f"Автор вже існує {el.get('fullname')}")
 
-    with open('data/quotes.json', encoding='utf-8') as fd:
+    with open('utils/data/quotes.json', encoding='utf-8') as fd:
         data = json.load(fd)
         for el in data:
             for a in data_author:

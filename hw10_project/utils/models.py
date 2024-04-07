@@ -4,7 +4,7 @@ from mongoengine import connect, Document, StringField, ReferenceField, ListFiel
 from dotenv import load_dotenv
 
 load_dotenv()
-db_uri = os.environ.get("DB_LOCAL_URI")
+db_uri = os.environ.get("DB_URI")
 connect(db='hw_10_web', host=db_uri)
 
 
