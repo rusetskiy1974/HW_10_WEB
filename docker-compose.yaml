@@ -12,8 +12,8 @@ services:
     ports:
       - "5432:5432"
 
-#    volumes:
-#      - pg_db_data:/var/lib/postgresql/data/
+    volumes:
+      - pg_db_data:/var/lib/postgresql/data/
 
 
 
@@ -33,9 +33,9 @@ services:
   api_db:
     container_name: db_mongo1
     image: mongo:4.4.19-rc0-focal
-#    volumes:
-#      - db-data:/data/db_mongo
-#      - ./src:/examples
+    volumes:
+      - db-data:/data/db_mongo
+
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${DB_ADMIN}
       MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
@@ -67,13 +67,10 @@ services:
 
 
 
-#volumes:
-#  db-data:
-#  pg_db_data:
+volumes:
+  db-data:
+  pg_db_data:
 
 
-#networks:
-#  project_network:
-#    driver: bridge
 
 
