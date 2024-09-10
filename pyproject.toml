@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-django = "^5.0.3"
+django = "^5.0.8"
 mongoengine = "^0.28.2"
 python-dotenv = "^1.0.1"
 psycopg2 = "^2.9.9"
